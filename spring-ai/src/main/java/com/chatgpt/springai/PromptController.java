@@ -1,6 +1,5 @@
 package com.chatgpt.springai;
 
-import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.ChatClient;
@@ -13,11 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/ai")
-@RequiredArgsConstructor
 public class PromptController {
 
     private final ChatClient chatClient;
     private static final Logger logger = LoggerFactory.getLogger(PromptController.class);
+
+    public PromptController(ChatClient chatClient) {
+        this.chatClient = chatClient;
+    }
 
     @GetMapping("/hello")
     public ResponseEntity<String> sayHello() {
